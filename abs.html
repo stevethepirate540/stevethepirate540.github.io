@@ -3,22 +3,22 @@
 <body>
 <p id="demo">Hi.</p> 
 <script>
-  var list = ["20x dead bugs",
-              "12x leg lifts",
-              "30x bicycle",
-              "12x situps",
-              "12x flag pole",
-              "30x flutter kicks",
-              "16x alternating toe touch",
-              "30x plank",
-              "12x v situp",
-              "12x spiderman pushup",
-              "10x wrist to knee",
-              "20x russian twist",
-              "30x ankle taps",
-              "20x side plank crunch",
-              "12x toe touch crunch",
-              "20x climber touches"];
+  var list = ["x20 dead bugs",
+              "x12 leg lifts",
+              "x30 bicycle",
+              "x12 situps",
+              "3x12 flag pole",
+              "3x30 flutter kicks",
+              "3x16 alternating toe touch",
+              "3x30 plank",
+              "3x12 v situp",
+              "3x12 spiderman pushup",
+              "3x10 wrist to knee",
+              "3x20 russian twist",
+              "3x30 ankle taps",
+              "3x20 side plank crunch",
+              "3x12 toe touch crunch",
+              "3x20 climber touches"];
   function getRandom(arr, n) {
     var result = new Array(n),
         len = arr.length,
@@ -32,9 +32,12 @@
     }
     return result;
   }
-  document.getElementById("demo").innerHTML = getRandom(list, 6);
+  var lst = "";
+  var otp = getRandom(list, 6);
+  for(var i = 0; i < opt.length; i++){
+    lst += opt[i] + "\n";
+  }
+  document.getElementById("demo").innerHTML = lst;
 </script>
-  
-  
 </body>
 </html>
