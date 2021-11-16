@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <body>
-<p style="color:DarkSlateBlue;font-family:verdana;font-size:300%;" id="demo">Hi.</p>
-<p id="bttn" onclick="myFunction()">New Workout</p>
+<p style="color:LightBlue;font-family:verdana;font-size:300%;" id="bttn" onclick="myFunction()">New Workout</p>
+<p style="color:DarkSlateBlue;font-family:verdana;font-size:300%;" id="demo"></p>
+
 <script>
   var list = ["3x30 dead bugs",
               "3x18 leg lifts",
@@ -34,9 +35,9 @@
     return result;
   }
   function myFunction(){
-    
+    document.getElementById("demo").innerHTML = list();
   }
-  function display(){
+  function list(){
     var lst = "";
     var opt = getRandom(list, 6);
     for(var i = 0; i < opt.length; i++){
@@ -44,8 +45,6 @@
     }
     return lst;
   }
-  
-  document.getElementById("demo").innerHTML = display();
 </script>
 </body>
 </html>
