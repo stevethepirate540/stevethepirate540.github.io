@@ -1,51 +1,111 @@
 <!DOCTYPE html>
 <html>
-<body>
-<button style="color:Green;font-family:verdana;font-size:300%;" id="bttn" onclick="myFunction()">New Workout</button>
-<p style="color:DarkSlateBlue;font-family:verdana;font-size:300%;" id="demo">test</p>
+<head>
+  <style>
+  div, input, button{
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 1.75rem;
+    color: DarkSlateBlue;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-family: verdana;
+    letter-spacing: .15rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-bottom: 0px;
+  }
+  p {
+    padding: .75rem 1.25rem;
+    color: DarkSlateBlue;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-family: verdana;
+    letter-spacing: .15rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-top: 5px;
+  }
 
-<script>
-  var list = ["3x30 dead bugs",
-              "3x18 leg lifts",
-              "3x40 bicycle crunches",
-              "3x20 situps",
-              "3x16 flag pole",
-              "3x40 flutter kicks",
-              "3x20 alternating toe touch",
-              "3x45 seconds plank",
-              "3x20 v situps",
-              "3x12 spiderman pushup",
-              "3x16 wrist to knee crunch",
-              "3x30 russian twist",
-              "3x40 ankle taps",
-              "3x20 side plank crunch",
-              "3x20 toe touch crunch",
-              "3x24 climber touches"];
-  function getRandom(arr, n) {
-    var result = new Array(n),
-        len = arr.length,
-        taken = new Array(len);
-    if (n > len)
-        throw new RangeError("getRandom: more elements taken than available");
-    while (n--) {
-        var x = Math.floor(Math.random() * len);
-        result[n] = arr[x in taken ? taken[x] : x];
-        taken[x] = --len in taken ? taken[len] : len;
+  </style>
+</head>
+<body>
+  <button id="bttn" onclick="generate()">Generate</button>
+  <br>
+  <div>
+    Difficulty:
+    <input type="number" id="difficulty" value="2" min="1" max="5" step="1">
+    <br>
+    Sets:
+    <input type="number" id="sets" value="3" min="1" max="9" step="1">
+  </div>
+  <p id="workout"></p>
+  <script>
+  var exercises = [
+    "dead bugs",
+    "leg lifts",
+    "bicycle crunches",
+    "situps",
+    "flag pole",
+    "flutter kicks",
+    "alternating toe touch",
+    "seconds plank",
+    "v situps",
+    "spiderman pushups",
+    "wrist to knee crunch",
+    "russian twist",
+    "ankle taps",
+    "side plank crunch",
+    "toe touch crunch",
+    "climber touches"
+  ];
+  var dict = {
+    "dead bugs":             [12, 20, 30, 36, 40],
+    "leg lifts":             [8,  12, 18, 20, 25],
+    "bicycle crunches":      [20, 30, 40, 50, 60],
+    "situps":                [8,  12, 20, 25, 30],
+    "flag pole":             [8,  12, 16, 20, 24],
+    "flutter kicks":         [20, 30, 40, 50, 60],
+    "alternating toe touch": [12, 16, 20, 30, 40],
+    "seconds plank":         [20, 30, 45, 60, 90],
+    "v situps":              [12, 16, 20, 24, 30],
+    "spiderman pushups":     [8,  12, 16, 20, 30],
+    "wrist to knee crunch":  [12, 16, 20, 25, 30],
+    "russian twist":         [20, 24, 30, 40, 50],
+    "ankle taps":            [20, 30, 40, 40, 60],
+    "side plank crunch":     [16, 20, 24, 30, 40],
+    "toe touch crunch":      [12, 16, 20, 24, 30],
+    "climber touches":       [16, 20, 24, 30, 36]
+  };
+
+  function getRandom() {
+    var result = "";
+    var num_sets = document.getElementById("sets").value;
+    var difficulty = document.getElementById("difficulty").value;
+    var picked = [];
+    for(var i = 0; i < 6; i++){
+      var pick = getRandomInt(exercises.length);
+      while(picked.includes(pick)){
+        pick = getRandomInt(exercises.length);
+      }
+      var exercise = exercises[pick];
+      var reps = dict[exercise];
+      result += num_sets+"x"+reps[difficulty-1] + " " +exercise+"<br>";
+      picked.push(pick);
     }
     return result;
   }
-  function myFunction(){
-    document.getElementById("demo").innerHTML = list();
-    document.getElementById("bttn").style.color = "blue";
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
   }
-  function list(){
-    var lst = "";
-    var opt = getRandom(list, 6);
-    for(var i = 0; i < opt.length; i++){
-      lst += opt[i] + "<br>";
-    }
-    return lst;
+  function generate(){
+    document.getElementById("workout").innerHTML = getRandom();
   }
-</script>
+
+  </script>
 </body>
 </html>
