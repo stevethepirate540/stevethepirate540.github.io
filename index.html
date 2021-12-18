@@ -13,50 +13,18 @@
     Sets:
     <input type="number" id="sets" value="3" min="1" max="9" step="1">
   </div>
-  <p id="workout"></p>
+  <table id="workout"></table>
+  <script type="text/javascript" src="lists.js"></script>
   <script>
-  var exercises = [
-    "dead bugs",
-    "leg lifts",
-    "bicycle crunches",
-    "situps",
-    "flag pole",
-    "flutter kicks",
-    "alternating toe touch",
-    "seconds plank",
-    "v situps",
-    "spiderman pushups",
-    "wrist to knee crunch",
-    "russian twist",
-    "ankle taps",
-    "side plank crunch",
-    "toe touch crunch",
-    "climber touches"
-  ];
-  var dict = {
-    "dead bugs":             [12, 20, 30, 36, 40],
-    "leg lifts":             [8,  12, 18, 20, 25],
-    "bicycle crunches":      [20, 30, 40, 50, 60],
-    "situps":                [8,  12, 20, 25, 30],
-    "flag pole":             [8,  12, 16, 20, 24],
-    "flutter kicks":         [20, 30, 40, 50, 60],
-    "alternating toe touch": [12, 16, 20, 30, 40],
-    "seconds plank":         [20, 30, 45, 60, 90],
-    "v situps":              [12, 16, 20, 24, 30],
-    "spiderman pushups":     [8,  12, 16, 20, 30],
-    "wrist to knee crunch":  [12, 16, 20, 25, 30],
-    "russian twist":         [20, 24, 30, 40, 50],
-    "ankle taps":            [20, 30, 40, 40, 60],
-    "side plank crunch":     [16, 20, 24, 30, 40],
-    "toe touch crunch":      [12, 16, 20, 24, 30],
-    "climber touches":       [16, 20, 24, 30, 36]
-  };
 
   function getRandom() {
     var result = "";
     var num_sets = document.getElementById("sets").value;
     var difficulty = document.getElementById("difficulty").value;
     var picked = [];
+    var c1 = [];
+    var c2 = [];
+    var c3 = [];
     for(var i = 0; i < 6; i++){
       var pick = getRandomInt(exercises.length);
       while(picked.includes(pick)){
@@ -64,8 +32,19 @@
       }
       var exercise = exercises[pick];
       var reps = dict[exercise];
-      result += num_sets+"x"+reps[difficulty-1] + " " +exercise+"<br>";
+      c1.push(num_sets)
+      c2.push(reps[difficulty-1]);
+      c3.push(exercise);
+      //result += "<td>" + num_sets+"x"+reps[difficulty-1] + " " +exercise+"</td>";
       picked.push(pick);
+    }
+    for(var i = 0; i < c1.length; i++){
+      result += "<tr>";
+      result += "<td>"+c1[i]+"</td>";
+      result += "<td>x</td>";
+      result += "<td>"+c2[i]+"</td>";
+      result += "<td>"+c3[i]+"</td>";
+      result += "</tr>";
     }
     return result;
   }
