@@ -37,6 +37,6 @@ const dict = {
 };
 
 const upperBody = [
-  "pull-ups",
+  "pull-ups"
   
 ];
