@@ -36,7 +36,3 @@ const dict = {
   "climber touches":       [16, 20, 24, 30, 36]
 };
 
-const upperBody = [
-  "pull-ups"
-  
-];
