@@ -1,4 +1,4 @@
-const exercises = [
+const exercises_abs = [
   "dead bugs",
   "leg lifts",
   "bicycle crunches",
@@ -17,7 +17,7 @@ const exercises = [
   "climber touches"
 ];
 
-const dict = {
+const dict_abs = {
   "dead bugs":             [12, 20, 30, 36, 40],
   "leg lifts":             [8,  12, 18, 20, 25],
   "bicycle crunches":      [20, 30, 40, 50, 60],

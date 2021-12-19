@@ -7,12 +7,12 @@ function getRandom() {
   var c2 = [];
   var c3 = [];
   for(var i = 0; i < 6; i++){
-    var pick = getRandomInt(exercises.length);
+    var pick = getRandomInt(exercises_abs.length);
     while(picked.includes(pick)){
-      pick = getRandomInt(exercises.length);
+      pick = getRandomInt(exercises_abs.length);
     }
-    var exercise = exercises[pick];
-    var reps = dict[exercise];
+    var exercise = exercises_abs[pick];
+    var reps = dict_abs[exercise];
     c1.push(num_sets)
     c2.push(reps[difficulty-1]);
     c3.push(exercise);
